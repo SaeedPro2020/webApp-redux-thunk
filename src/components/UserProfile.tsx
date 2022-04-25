@@ -7,16 +7,9 @@ import femaleAvetar from '../assets/013-girl-6.svg'
 import activeStatus from '../assets/activeIcon.png'
 import inactiveStatus from '../assets/inactive.jpg'
 import arrowIcon from '../assets/arrow.png'
+import { Todo } from "../redux/todo/models/Todo";
 
-export type userType = {
-    id: number;
-    name: string;
-    email: string;
-    gender: string;
-    status: string;
-}
-
-export default function UserProfile(props: userType): JSX.Element {
+export default function UserProfile(props: Todo): JSX.Element {
 
     const printLog = () => {
         console.log("BTN clicked")
