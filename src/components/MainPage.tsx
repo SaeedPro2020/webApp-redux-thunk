@@ -5,46 +5,46 @@ import { bindActionCreators } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
 import { AppState } from '../redux/rootStore';
-import { AppActions } from '../redux/models/actions';
+import { AppActions } from '../redux/actions/users/actions';
 
-import { Todo } from '../redux/todo/models/Todo';
-import { boundRequestTodos } from '../redux/todo/TodoAction';
+import { UserModel } from '../redux/models/UserModel';
+import { boundRequestUsers } from '../redux/actions/users/UserAction';
 import UserProfile from './UserProfile';
 
 
 interface LinkStateProps {
-  todos: Todo[];
+  users: UserModel[];
 }
 
 interface LinkDispatchProps {
-  boundRequestTodos: () => void;
+  boundRequestUsers: () => void;
 }
 
 type LinkProps = LinkStateProps & LinkDispatchProps;
 
 const mapStateToProps = (state: AppState): LinkStateProps => ({
-  todos: state.todoReducer.todos,
+  users: state.userReducer.users,
 });
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<AppState, unknown, AppActions>
 ) => ({
-  boundRequestTodos: bindActionCreators(boundRequestTodos, dispatch),
+  boundRequestUsers: bindActionCreators(boundRequestUsers, dispatch),
 });
 
 class MainPage extends Component<LinkProps> {
   componentDidMount() {
-    this.props.boundRequestTodos();
+    this.props.boundRequestUsers();
   }
 
   render() {
-    const { todos } = this.props;
+    const { users } = this.props;
     return (
       <div>
         <h1>List of users</h1>
         <ul>
-          {todos.map((todo: Todo) => (
-              <UserProfile key={todo.id} id={todo.id} name={todo.name} email={todo.email} gender={todo.gender} status={todo.status}/>
+          {users.map((user: UserModel) => (
+              <UserProfile key={user.id} id={user.id} name={user.name} email={user.email} gender={user.gender} status={user.status}/>
           ))}
         </ul>
       </div>

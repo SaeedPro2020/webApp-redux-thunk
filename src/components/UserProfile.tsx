@@ -7,9 +7,9 @@ import femaleAvetar from '../assets/013-girl-6.svg'
 import activeStatus from '../assets/activeIcon.png'
 import inactiveStatus from '../assets/inactive.jpg'
 import arrowIcon from '../assets/arrow.png'
-import { Todo } from "../redux/todo/models/Todo";
+import { UserModel } from "../redux/models/UserModel";
 
-export default function UserProfile(props: Todo): JSX.Element {
+export default function UserProfile(props: UserModel): JSX.Element {
 
     const printLog = () => {
         console.log("BTN clicked")
