@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './UserProfile.css'
 import imageProfile from '../assets/blank.png'
 import mailIcon from '../assets/empty-email.svg'
@@ -6,18 +6,33 @@ import maleAvetar from '../assets/009-boy-4.svg'
 import femaleAvetar from '../assets/013-girl-6.svg'
 import activeStatus from '../assets/activeIcon.png'
 import inactiveStatus from '../assets/inactive.jpg'
-import arrowIcon from '../assets/arrow.png'
 import { UserModel } from "../redux/models/UserModel";
+import ShowPosts from "./ShowPosts";
+import ShowComments from "./ShowComments";
 
 export default function UserProfile(props: UserModel): JSX.Element {
 
-    const printLog = () => {
-        console.log("BTN clicked")
+    const [btnPost, setBtnPost] = useState(false)
+    const [btnComment, setBtnComment] = useState(false)
+    
+    const userPosts = () => {
+        console.log("User with this ID clicked", props.id)
+        setBtnPost(true)
+        setBtnComment(false)
+        //Perform a redux action to fetch and do a simple query for this user ==> get user "posts" info 
+    }
+
+    const userComments = () => {
+        console.log("User with this ID clicked", props.id)
+        setBtnComment(true)
+        setBtnPost(false)
+        //Perform a redux action to fetch and do a simple query for this user ==> get user "comments" info
     }
     
-    console.log(props)
-    
     return(
+
+    <div className="rootElement">
+
         <div className="UserProfile">
            
             <img className="ImageProfile" src={imageProfile}></img>
@@ -47,20 +62,37 @@ export default function UserProfile(props: UserModel): JSX.Element {
                     }
                     <p className="OtherDetails">{props.status}</p>
                 </div>
+
+                <div className="btnsContainer">
+                    <button className="Buttons" onClick={userPosts}>
+                        <p className="btnText">Posts</p>
+                    </button>
+
+                    <button className="Buttons" onClick={userComments}>
+                        <p className="btnText">Comments</p>
+                    </button>
+                </div>
+
             </div>
 
-            <div className="btnsContainer">
-                <button className="Buttons" onClick={printLog}>
-                    <p className="btnText">Posts</p>
-                    <img className="ImageBtn" src={arrowIcon}></img>
-                </button>
-
-                <button className="Buttons" onClick={printLog}>
-                    <p className="btnText">Comments</p>
-                    <img className="ImageBtn" src={arrowIcon}></img>
-                </button>
-            </div>
 
         </div>
+
+        {
+            btnPost && !btnComment ?
+                <div className="detailsContainer">
+                    <ShowPosts onClose={() => setBtnPost(false)}/>
+                </div>
+            :
+            !btnPost && btnComment ?
+                <div className="detailsContainer">
+                    <ShowComments onClose={() => setBtnComment(false)}/>
+                </div>
+            :
+            <></>
+        }
+
+
+    </div>
     )
 }

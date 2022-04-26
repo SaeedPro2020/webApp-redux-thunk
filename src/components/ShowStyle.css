@@ -1,0 +1,28 @@
+.rootContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.headlineDetails {
+    text-align: center;
+    margin-top: 0;
+  }
+
+.btnClose {
+    width: 1.5vw;
+    margin: 0;
+    align-self: flex-end;
+    border: none;
+    background-color: white;
+    padding: 0;
+}
+
+.ImageIcon {
+    width: 1.5vw;
+    height: 1.5vw;
+    align-self: left;
+    align-content: left;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
