@@ -62,14 +62,14 @@
   .UserName {
       align-self: center;
       font-size:1.3vw;
-      margin-bottom: 2%;
+      margin-bottom: 5%;
       margin-top: 2vw; 
     }
 
   .OtherDetails {
-    margin-left: 5px;
+    margin-left: 10px;
     font-size:1vw;
-    margin-top: 2.5%;
+    margin-top: 0;
   }
 
   .btnsContainer {

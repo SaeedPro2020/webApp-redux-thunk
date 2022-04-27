@@ -2,14 +2,15 @@ import React from "react";
 import './ShowStyle.css';
 import closeBtn from '../assets/gen034.svg'
 
-type closeFunction = {
-    onClose: VoidFunction
+type propsParm = {
+    onClose: VoidFunction,
+    onQueryParm: number
 }
 
-export default function ShowComments(props: closeFunction): JSX.Element {
+export default function ShowComments(props: propsParm): JSX.Element {
 
     const closeComponent = () => {
-        console.log(props)
+        console.log(props.onQueryParm)
         props.onClose()
     }
 

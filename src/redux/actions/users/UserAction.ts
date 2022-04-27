@@ -1,6 +1,6 @@
 import  { Dispatch } from 'redux';
 
-import { AppActions } from './actions';
+import { AppActions } from '../actions';
 
 import { FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE } from './asyncActions';
 import { UserModel } from '../../models/UserModel';
@@ -25,7 +25,7 @@ const invalidateUsers = (): AppActions => ({
     users: [],
     error:'Unable to fetch data',
 })
-
+// 
 export const boundRequestUsers = () => {
     return (dispatch: Dispatch<AppActions>) => {
         dispatch(requestUsers());

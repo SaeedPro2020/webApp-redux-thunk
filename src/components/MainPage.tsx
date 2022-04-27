@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
 import { AppState } from '../redux/rootStore';
-import { AppActions } from '../redux/actions/users/actions';
+import { AppActions } from '../redux/actions/actions';
 
 import { UserModel } from '../redux/models/UserModel';
 import { boundRequestUsers } from '../redux/actions/users/UserAction';

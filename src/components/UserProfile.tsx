@@ -9,21 +9,21 @@ import inactiveStatus from '../assets/inactive.jpg'
 import { UserModel } from "../redux/models/UserModel";
 import ShowPosts from "./ShowPosts";
 import ShowComments from "./ShowComments";
+import { AppState } from '../redux/rootStore';
+import { GetPosts } from '../redux/actions/posts/PostsAction';
 
 export default function UserProfile(props: UserModel): JSX.Element {
 
     const [btnPost, setBtnPost] = useState(false)
     const [btnComment, setBtnComment] = useState(false)
+
     
     const userPosts = () => {
-        console.log("User with this ID clicked", props.id)
         setBtnPost(true)
         setBtnComment(false)
-        //Perform a redux action to fetch and do a simple query for this user ==> get user "posts" info 
     }
 
     const userComments = () => {
-        console.log("User with this ID clicked", props.id)
         setBtnComment(true)
         setBtnPost(false)
         //Perform a redux action to fetch and do a simple query for this user ==> get user "comments" info
@@ -81,12 +81,14 @@ export default function UserProfile(props: UserModel): JSX.Element {
         {
             btnPost && !btnComment ?
                 <div className="detailsContainer">
-                    <ShowPosts onClose={() => setBtnPost(false)}/>
+                    <ShowPosts onClose={() => setBtnPost(false)}
+                        onQueryParm={props.id}/>
                 </div>
             :
             !btnPost && btnComment ?
                 <div className="detailsContainer">
-                    <ShowComments onClose={() => setBtnComment(false)}/>
+                    <ShowComments onClose={() => setBtnComment(false)}
+                        onQueryParm={props.id}/>
                 </div>
             :
             <></>
