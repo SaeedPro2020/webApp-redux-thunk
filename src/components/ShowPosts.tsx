@@ -37,9 +37,7 @@ export default function ShowPosts(props: propsParm): JSX.Element {
                 {postState?.posts?.map((postData: PostModel) => (
                     <li key={postData.id}>{postData?.title}</li>
                 ))}
-                {/* // <li>Content comming from redux (posts)</li>
-                // <li>Post2</li>
-                // <li>Post3</li> */}
+
             </ul>
         </div>
     )

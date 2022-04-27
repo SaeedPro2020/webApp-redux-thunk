@@ -9,8 +9,6 @@ import inactiveStatus from '../assets/inactive.jpg'
 import { UserModel } from "../redux/models/UserModel";
 import ShowPosts from "./ShowPosts";
 import ShowComments from "./ShowComments";
-import { AppState } from '../redux/rootStore';
-import { GetPosts } from '../redux/actions/posts/PostsAction';
 
 export default function UserProfile(props: UserModel): JSX.Element {
 

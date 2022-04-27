@@ -1,6 +1,8 @@
 .rootContainer{
     display: flex;
     flex-direction: column;
+    padding-bottom: 5%;
+    padding-left: 1%;
 }
 
 .headlineDetails {
