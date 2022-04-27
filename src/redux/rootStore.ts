@@ -5,10 +5,11 @@ import thunk, { ThunkMiddleware } from "redux-thunk";
 import { userReducer } from "./reducers/UserReducer";
 import { AppActions } from "./actions/actions";
 import { postReducer } from "./reducers/PostReducer";
+import { commentReducer } from "./reducers/CommentReducer";
 
 const logger = createLogger();
 
-export const rootReducer = combineReducers({ userReducer, postReducer});
+export const rootReducer = combineReducers({ userReducer, postReducer, commentReducer});
 
 export type AppState = ReturnType<typeof rootReducer>;
 

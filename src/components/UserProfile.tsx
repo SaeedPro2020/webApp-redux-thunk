@@ -8,7 +8,6 @@ import activeStatus from '../assets/activeIcon.png'
 import inactiveStatus from '../assets/inactive.jpg'
 import { UserModel } from "../redux/models/UserModel";
 import ShowPosts from "./ShowPosts";
-import ShowComments from "./ShowComments";
 import { useDispatch, useSelector } from "react-redux";
 import { GetPosts } from "../redux/actions/posts/PostsAction";
 import { AppState } from "../redux/rootStore";
@@ -16,23 +15,17 @@ import { AppState } from "../redux/rootStore";
 export default function UserProfile(props: UserModel): JSX.Element {
 
     const [btnPost, setBtnPost] = useState(false)
-    const [btnComment, setBtnComment] = useState(false)
 
     const dispatch = useDispatch();
 
     const postState = useSelector((state: AppState) => state.postReducer);
 
+
+
     
     const userPosts = () => {
         setBtnPost(true)
-        setBtnComment(false)
         dispatch(GetPosts(props.id) as any)
-    }
-
-    const userComments = () => {
-        setBtnComment(true)
-        setBtnPost(false)
-        //Perform a redux action to fetch and do a simple query for this user ==> get user "comments" info
     }
     
     return(
@@ -73,14 +66,9 @@ export default function UserProfile(props: UserModel): JSX.Element {
                     <button className="Buttons" onClick={userPosts}>
                         <p className="btnText">Posts</p>
                     </button>
-
-                    <button className="Buttons" onClick={userComments}>
-                        <p className="btnText">Comments</p>
-                    </button>
                 </div>
 
             </div>
-
 
         </div>
 
@@ -88,26 +76,17 @@ export default function UserProfile(props: UserModel): JSX.Element {
              <h3 className="detailsContainer">...Loading</h3>
              :
             <div>
-                {btnPost && !btnComment && postState?.posts[0]?.user_id === props.id ?
+                {btnPost && postState?.posts[0]?.user_id === props.id ?
                 <div className="detailsContainer">
                     <ShowPosts onClose={() => setBtnPost(false)}
-                        onQueryParm={props.id}
                         onData={postState}/>
-                </div>
-            :
-            !btnPost && btnComment ?
-                <div className="detailsContainer">
-                    <ShowComments onClose={() => setBtnComment(false)}
-                        onQueryParm={props.id}/>
                 </div>
             :
             <></>
                 }
 
             </div>
-
         }
-
 
     </div>
     )
