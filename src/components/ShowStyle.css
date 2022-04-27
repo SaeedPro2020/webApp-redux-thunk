@@ -8,6 +8,12 @@
 .headlineDetails {
     text-align: center;
     margin-top: 0;
+    font-size:1.3vw;
+    margin-bottom: 1%;
+  }
+
+  .postLists {
+    font-size: 0.9vw;
   }
 
 .btnClose {

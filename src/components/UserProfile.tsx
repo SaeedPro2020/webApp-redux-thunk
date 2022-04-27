@@ -9,16 +9,24 @@ import inactiveStatus from '../assets/inactive.jpg'
 import { UserModel } from "../redux/models/UserModel";
 import ShowPosts from "./ShowPosts";
 import ShowComments from "./ShowComments";
+import { useDispatch, useSelector } from "react-redux";
+import { GetPosts } from "../redux/actions/posts/PostsAction";
+import { AppState } from "../redux/rootStore";
 
 export default function UserProfile(props: UserModel): JSX.Element {
 
     const [btnPost, setBtnPost] = useState(false)
     const [btnComment, setBtnComment] = useState(false)
 
+    const dispatch = useDispatch();
+
+    const postState = useSelector((state: AppState) => state.postReducer);
+
     
     const userPosts = () => {
         setBtnPost(true)
         setBtnComment(false)
+        dispatch(GetPosts(props.id) as any)
     }
 
     const userComments = () => {
@@ -76,11 +84,15 @@ export default function UserProfile(props: UserModel): JSX.Element {
 
         </div>
 
-        {
-            btnPost && !btnComment ?
+        {postState.loading === true ?
+             <h3 className="detailsContainer">...Loading</h3>
+             :
+            <div>
+                {btnPost && !btnComment && postState?.posts[0]?.user_id === props.id ?
                 <div className="detailsContainer">
                     <ShowPosts onClose={() => setBtnPost(false)}
-                        onQueryParm={props.id}/>
+                        onQueryParm={props.id}
+                        onData={postState}/>
                 </div>
             :
             !btnPost && btnComment ?
@@ -90,6 +102,10 @@ export default function UserProfile(props: UserModel): JSX.Element {
                 </div>
             :
             <></>
+                }
+
+            </div>
+
         }
 
 
