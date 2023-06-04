@@ -81,10 +81,6 @@
     "eslint": "^8.12.0",
     "eslint-config-react-typescript": "^1.0.9",
     "eslint-plugin-react": "^7.29.4",
-<<<<<<< HEAD
-=======
-    "react-refresh": "^0.14.0",
->>>>>>> 7b7f99c (Update and clean the code)
     "webpack": "^5.72.0"
   },
   "jest": {
