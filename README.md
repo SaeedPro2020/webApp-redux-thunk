@@ -1,5 +1,5 @@
 ## Description
-We used StyledComponents for our own css in this project.
+We used Redux, StyledComponents for our own css in this project.
 
 ### Application: 
 - Create a basic application that uses this rest api https://gorest.co.in/
